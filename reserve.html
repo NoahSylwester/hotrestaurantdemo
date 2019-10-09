@@ -52,7 +52,7 @@
                 <label for="">Unique ID</label>
                 <input type="text" class="form-control" id="reserve_uniqueID">
               </div>
-              <button type="submit" class="btn btn-primary submit">Submit</button>
+              <button type="submit" id="add-btn" class="btn btn-primary submit">Submit</button>
             </form>
           </div>
         </div>
@@ -65,5 +65,23 @@
     </footer>
   </div>
 </body>
+<script type="text/javascript">
+  // Question: What does this code do?
+  $("#add-btn").on("click", function(event) {
+    event.preventDefault();
+    var newReservation = {
+      name: $("#reserve_name").val().trim(),
+      phone: $("#reserve_phone").val().trim(),
+      email: $("#reserve_email").val().trim(),
+      id: $("#reserve_uniqueID").val().trim()
+    };
 
+    // Question: What does this code do??
+    $.post("/api/reserve", newReservation)
+      .then(function(data) {
+        console.log("tables.html", data);
+        alert("Adding...");
+      });
+  });
+</script>
 </html>
