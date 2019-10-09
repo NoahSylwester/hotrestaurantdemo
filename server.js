@@ -47,14 +47,13 @@ app.post("/api/reserve", function(req, res) {
  
   if (reservations.length < 5) {
     reservations.push(newReservation);
+    res.json({reserved: true});
   }
   else {
     waitList.push(newReservation);
+    res.json({reserved: false});
   }
 
-  console.log(1, waitList, 2, reservations);
-
-  // res.json(newReservation);
 });
 
 // Starts the server to begin listening

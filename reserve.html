@@ -78,7 +78,14 @@
       id: $("#reserve_uniqueID").val().trim()
     };
 
-    $.post("/api/reserve", newReservation);
+    $.post("/api/reserve", newReservation, function(data){
+      if (data.reserved) {
+        alert("Reserved successfully!");
+      }
+      else {
+        alert("You are on the waitlist.")
+      }
+    }, "json");
 
 
   });
