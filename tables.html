@@ -59,13 +59,23 @@
       $.get("/api/tables", function(data) {
         console.log(data);
         if (data) {
-          for (let i = 0; i < data.length; i++) {
+          for (let i = 0; i < data.reservations.length; i++) {
             $('#tableSection').append(`
             <h1>${i + 1}</h1>
-            <div>Name: ${data[i].name}</div>
-            <div>Phone number: ${data[i].phone}</div>
-            <div>Email: ${data[i].email}</div>
-            <div>id: ${data[i].id}</div>
+            <div>Name: ${data.reservations[i].name}</div>
+            <div>Phone number: ${data.reservations[i].phone}</div>
+            <div>Email: ${data.reservations[i].email}</div>
+            <div>id: ${data.reservations[i].id}</div>
+            <br />
+            `);
+          }
+          for (let i = 0; i < data.waitList.length; i++) {
+            $('#waitlistSection').append(`
+            <h1>${i + 1}</h1>
+            <div>Name: ${data.waitList[i].name}</div>
+            <div>Phone number: ${data.waitList[i].phone}</div>
+            <div>Email: ${data.waitList[i].email}</div>
+            <div>id: ${data.waitList[i].id}</div>
             <br />
             `);
           }
