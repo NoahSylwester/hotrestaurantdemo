@@ -29,7 +29,9 @@ app.get("/reserve", function(req, res) {
 });
 
 app.get("/api/tables", function(req, res) {
-  res.json(reservations);
+  res.json({
+    reservations:reservations, waitList:waitList
+  });
 });
 
 // array of reservations
@@ -42,7 +44,7 @@ app.post("/api/reserve", function(req, res) {
   // This works because of our body parsing middleware
   var newReservation = req.body;
 
-  console.log(newReservation);
+ 
   if (reservations.length < 5) {
     reservations.push(newReservation);
   }
@@ -50,7 +52,7 @@ app.post("/api/reserve", function(req, res) {
     waitList.push(newReservation);
   }
 
-  console.log('reservations', reservations);
+  console.log(1, waitList, 2, reservations);
 
   // res.json(newReservation);
 });
