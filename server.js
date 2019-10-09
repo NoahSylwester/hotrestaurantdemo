@@ -28,6 +28,10 @@ app.get("/reserve", function(req, res) {
   res.sendFile(path.join(__dirname, "reserve.html"));
 });
 
+app.get("/api/tables", function(req, res) {
+  res.json(reservations);
+});
+
 // array of reservations
 var reservations = [];
 
@@ -40,6 +44,8 @@ app.post("/api/reserve", function(req, res) {
   console.log(newReservation);
 
   reservations.push(newReservation);
+
+  console.log('reservations', reservations);
 
   // res.json(newReservation);
 });
