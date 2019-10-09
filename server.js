@@ -34,6 +34,7 @@ app.get("/api/tables", function(req, res) {
 
 // array of reservations
 var reservations = [];
+var waitList = [];
 
 // Create New Reservations - takes in JSON input
 app.post("/api/reserve", function(req, res) {
@@ -42,8 +43,12 @@ app.post("/api/reserve", function(req, res) {
   var newReservation = req.body;
 
   console.log(newReservation);
-
-  reservations.push(newReservation);
+  if (reservations.length < 5) {
+    reservations.push(newReservation);
+  }
+  else {
+    waitList.push(newReservation);
+  }
 
   console.log('reservations', reservations);
 
